@@ -23,10 +23,16 @@ public class AdminController extends BaseController {
         return "redirect:list";
     }
 
+    @RequestMapping("list/{page}")
+    private String list(@PathVariable int page) {
+        super.session.setAttribute("pagination", adminService.list(page));
+        return "redirect:/admin/list.jsp";
+    }
+
+    //match: admin/list/
     @RequestMapping("list")
-    private String list() {
-        super.session.setAttribute("list", adminService.list());
-        return "redirect:list.jsp";
+    private String defaultList() {
+        return list(1);
     }
 
     @RequestMapping("search/{id}")

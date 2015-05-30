@@ -1,5 +1,7 @@
 package demo.dao;
 
+import demo.util.Pagination;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +18,7 @@ public interface GenericDao<M extends Serializable, ID extends Serializable> {
 
     M search(ID id);
 
-    List<M> list();
+    Pagination<M> list(int page);
 
     List<M> fuzzy(Map params);
 

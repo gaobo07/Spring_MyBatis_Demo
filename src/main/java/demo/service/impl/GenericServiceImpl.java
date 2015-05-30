@@ -2,6 +2,7 @@ package demo.service.impl;
 
 import demo.dao.GenericDao;
 import demo.service.GenericService;
+import demo.util.Pagination;
 
 import java.io.Serializable;
 import java.util.List;
@@ -36,8 +37,8 @@ public abstract class GenericServiceImpl<M extends Serializable, ID extends Seri
         return genericDao.fuzzy(params);
     }
 
-    public List<M> list() {
-        return genericDao.list();
+    public Pagination<M> list(int page) {
+        return genericDao.list(page);
     }
 
     public void modify(M model) {

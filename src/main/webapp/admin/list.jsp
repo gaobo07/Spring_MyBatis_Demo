@@ -26,7 +26,7 @@
                 <th>PASSWORD</th>
                 <th colspan="2">OPERATION</th>
             </tr>
-            <c:forEach var="admin" items="${sessionScope.list }" varStatus="vs">
+            <c:forEach var="admin" items="${sessionScope.pagination.list}" varStatus="vs">
             <tr>
                 <td>${vs.count}</td>
                 <td>${admin.id}</td>
@@ -37,5 +37,8 @@
             </tr>
             </c:forEach>
         </table>
+        <c:import url="${ctx}/commons/page.jsp">
+            <c:param name="path" value="admin/${sessionScope.pagination.selectId}"/>
+        </c:import>
     </body>
 </html>

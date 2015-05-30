@@ -23,10 +23,15 @@ public class ${model}Controller extends BaseController {
         return "redirect:list";
     }
 
+    @RequestMapping("list/{page}")
+    private String list(@pathVariables int page) {
+        super.session.setAttribute("pagination", ${model?lower_case}Service.list(page));
+        return "redirect:/${model?lower_case}/list.jsp";
+    }
+
     @RequestMapping("list")
-    private String list() {
-        super.session.setAttribute("list", ${model?lower_case}Service.list());
-        return "redirect:list.jsp";
+        private String defaultList() {
+        return list(1);
     }
 
     @RequestMapping("search/{id}")

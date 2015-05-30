@@ -1,5 +1,7 @@
 package demo.service;
 
+import demo.util.Pagination;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +20,7 @@ public interface GenericService<M extends Serializable, ID extends Serializable>
 
     List<M> fuzzy(Map params);
 
-    List<M> list();
+    Pagination<M> list(int page);
 
     void modify(M model);
 

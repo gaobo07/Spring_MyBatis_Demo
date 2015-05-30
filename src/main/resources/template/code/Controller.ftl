@@ -40,14 +40,24 @@ public class ${model}Controller extends BaseController {
         return "redirect:/${model?lower_case}/edit.jsp";
     }
 
-    @RequestMapping("fuzzy")
-    private String fuzzy(${model} ${model?lower_case}) {
+    @RequestMapping("fuzzy/{page}")
+    private String fuzzy(@PathVariable int page, ${model} ${model?lower_case}) {
+        if (page == 1) {
+            session.setAttribute("fuzzy${model}", ${model?lower_case});
+        } else {
+            ${model?lower_case} = (${model}) session.getAttribute("fuzzy${model}");
+        }
         try {
-           session.setAttribute("list", ${model?lower_case}Service.fuzzy(BeanUtils.describe(${model?lower_case})));
+           session.setAttribute("pagination", ${model?lower_case}Service.fuzzy(page, BeanUtils.describe(${model?lower_case})));
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }
         return "redirect:/${model?lower_case}/list.jsp";
+    }
+
+    @RequestMapping("fuzzy")
+    private String defaultFuzzy(${model} ${model?lower_case}) {
+        return fuzzy(1, ${model?lower_case});
     }
 
     @RequestMapping("modify")

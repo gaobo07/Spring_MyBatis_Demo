@@ -44,9 +44,9 @@ public class AdminController extends BaseController {
     @RequestMapping("fuzzy/{page}")
     private String fuzzy(@PathVariable int page, Admin admin) {
         if (page == 1) {
-            session.setAttribute("fuzzyWord", admin);
+            session.setAttribute("fuzzyAdmin", admin);
         } else {
-            admin = (Admin) session.getAttribute("fuzzyWord");
+            admin = (Admin) session.getAttribute("fuzzyAdmin");
         }
         try {
            session.setAttribute("pagination", adminService.fuzzy(page, BeanUtils.describe(admin)));

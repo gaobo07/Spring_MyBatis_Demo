@@ -54,11 +54,8 @@ public class GenericDaoImpl<M extends Serializable, ID extends Serializable> imp
     }
 
     @Override
-    public List<M> fuzzy(Map params) {
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<M> models = sqlSession.selectList(namespace.concat("fuzzy"), params);
-        sqlSession.close();
-        return models;
+    public Pagination<M> fuzzy(int page, Map params) {
+        return page(page, params, "fuzzy");
     }
 
     @Override

@@ -18,7 +18,7 @@ public interface GenericService<M extends Serializable, ID extends Serializable>
 
     M search(ID id);
 
-    List<M> fuzzy(Map params);
+    Pagination<M> fuzzy(int page, Map params);
 
     Pagination<M> list(int page);
 

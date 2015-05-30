@@ -33,8 +33,8 @@ public abstract class GenericServiceImpl<M extends Serializable, ID extends Seri
     }
 
     @Override
-    public List<M> fuzzy(Map params) {
-        return genericDao.fuzzy(params);
+    public Pagination<M> fuzzy(int page, Map params) {
+        return genericDao.fuzzy(page, params);
     }
 
     public Pagination<M> list(int page) {

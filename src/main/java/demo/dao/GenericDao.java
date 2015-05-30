@@ -20,7 +20,7 @@ public interface GenericDao<M extends Serializable, ID extends Serializable> {
 
     Pagination<M> list(int page);
 
-    List<M> fuzzy(Map params);
+    Pagination<M> fuzzy(int page, Map params);
 
     void modify(M model);
 

@@ -22,13 +22,13 @@
     </c:otherwise>
 </c:choose>
 <c:choose>
-    <c:when test="${sessionScope.pagination.currentPage ne sessionScope.pagination.totalPages}">
-        <a href="${ctx}/${param.path}/${sessionScope.pagination.currentPage+1}">下一页</a>
-        <a href="${ctx}/${param.path}/${sessionScope.pagination.totalPages}">尾页</a>
-    </c:when>
-    <c:otherwise>
+    <c:when test="${sessionScope.pagination.currentPage eq sessionScope.pagination.totalPages || sessionScope.pagination.totalPages eq 0}">
         下一页
         尾页
+    </c:when>
+    <c:otherwise>
+        <a href="${ctx}/${param.path}/${sessionScope.pagination.currentPage+1}">下一页</a>
+        <a href="${ctx}/${param.path}/${sessionScope.pagination.totalPages}">尾页</a>
     </c:otherwise>
 </c:choose>
 <form id="form" action="${ctx}/${param.path}/" method="post">

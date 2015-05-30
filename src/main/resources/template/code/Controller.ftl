@@ -24,7 +24,7 @@ public class ${model}Controller extends BaseController {
     }
 
     @RequestMapping("list/{page}")
-    private String list(@pathVariables int page) {
+    private String list(@PathVariable int page) {
         super.session.setAttribute("pagination", ${model?lower_case}Service.list(page));
         return "redirect:/${model?lower_case}/list.jsp";
     }
@@ -47,7 +47,7 @@ public class ${model}Controller extends BaseController {
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }
-        return "redirect:list.jsp";
+        return "redirect:/${model?lower_case}/list.jsp";
     }
 
     @RequestMapping("modify")

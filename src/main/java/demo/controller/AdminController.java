@@ -41,14 +41,24 @@ public class AdminController extends BaseController {
         return "redirect:/admin/edit.jsp";
     }
 
-    @RequestMapping("fuzzy")
-    private String fuzzy(Admin admin) {
+    @RequestMapping("fuzzy/{page}")
+    private String fuzzy(@PathVariable int page, Admin admin) {
+        if (page == 1) {
+            session.setAttribute("fuzzyWord", admin);
+        } else {
+            admin = (Admin) session.getAttribute("fuzzyWord");
+        }
         try {
-           session.setAttribute("list", adminService.fuzzy(BeanUtils.describe(admin)));
+           session.setAttribute("pagination", adminService.fuzzy(page, BeanUtils.describe(admin)));
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }
-        return "redirect:list.jsp";
+        return "redirect:/admin/list.jsp";
+    }
+
+    @RequestMapping("fuzzy")
+    private String defaultFuzzy(Admin admin) {
+        return fuzzy(1, admin);
     }
 
     @RequestMapping("modify")

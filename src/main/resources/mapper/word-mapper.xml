@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="word">
+    <select id="list" resultType="word">
+        SELECT *
+        FROM demo.Word
+        ORDER BY id
+    </select>
+    <select id="search" resultType="word">
+        SELECT *
+        FROM demo.Word
+        WHERE id = #{id}
+    </select>
+    <select id="fuzzy" parameterType="java.util.Map" resultType="word">
+        SELECT * FROM demo.Word
+        <where>
+            <if test="english != null and english != ''">english LIKE "%"#{english}"%"</if>
+            <if test="chinese != null and chinese != ''">AND chinese LIKE "%"#{chinese}"%"</if>
+            <if test="property != null and property != ''">AND property LIKE "%"#{property}"%"</if>
+            <if test="sentence != null and sentence != ''">AND sentence LIKE "%"#{sentence}"%"</if>
+        </where>
+    </select>
+    <update id="modify">
+        UPDATE demo.Word
+        SET
+            english = #{english}, 
+            chinese = #{chinese}, 
+            property = #{property}, 
+            sentence = #{sentence}
+        WHERE id = #{id}
+    </update>
+    <delete id="remove">
+        DELETE FROM demo.Word
+        WHERE id = #{id}
+    </delete>
+    <insert id="add" parameterType="Word" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO demo.Word (
+            english, 
+            chinese, 
+            property, 
+            sentence
+        )
+        VALUES (
+            #{english}, 
+            #{chinese}, 
+            #{property}, 
+            #{sentence}
+        );
+    </insert>
+</mapper>

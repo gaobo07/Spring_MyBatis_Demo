@@ -77,12 +77,27 @@ public class AdminController extends BaseController {
     @RequestMapping("login")
     private String login(Admin admin) {
         admin = adminService.login(admin);
+        String page = "";
         if (admin == null) {
             request.setAttribute("msg", "invalid username or password.");
             return "admin/login";
         } else {
+            String role = admin.getRole();
+            switch (role) {
+                case "管理员":
+                    page = "admin/list.jsp";
+                    break;
+                case "组长":
+                    page = "";
+                    break;
+                case "员工":
+                    page = "";
+                    break;
+                default:
+                    break;
+            }
             session.setAttribute("admin", admin);
-            return "redirect:/index.jsp";
+            return "redirect:/".concat(page);
         }
     }
 }

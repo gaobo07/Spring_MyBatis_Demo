@@ -6,6 +6,6 @@
 </head>
 <body>
 <h1>Index Page</h1>
-<p><a href="${ctx}/admin/login.jsp">Admin Login</a></p>
+<p><a href="${ctx}/admin/login.jsp">Login</a></p>
 </body>
 </html>

@@ -2,10 +2,10 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>admin login page</title>
+        <title>login page</title>
     </head>
     <body>
-        <h1>Admin Login Page</h1>
+        <h1>Login Page</h1>
         <form action="${ctx}/admin/login" method="post">
             USERNAME <input name="username" value="admin"><br/>
             PASSWORD <input type="password" name="password" value="admin"><br/>

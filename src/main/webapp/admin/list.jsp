@@ -24,6 +24,9 @@
                 <th>ID</th>
                 <th>USERNAME</th>
                 <th>PASSWORD</th>
+                <th>NAME</th>
+                <th>TEAM</th>
+                <th>ROLE</th>
                 <th colspan="2">OPERATION</th>
             </tr>
             <c:forEach var="admin" items="${sessionScope.pagination.list}" varStatus="vs">
@@ -32,6 +35,9 @@
                 <td>${admin.id}</td>
                 <td>${admin.username}</td>
                 <td>${admin.password}</td>
+                <td>${admin.name}</td>
+                <td>${admin.team}</td>
+                <td>${admin.role}</td>
                 <td><a href="${ctx}/admin/search/${admin.id}">EDIT</a></td>
                 <td><a class="delete" href="${ctx }/admin/remove/${admin.id}" onclick="return del()">REMOVE</a></td>
             </tr>

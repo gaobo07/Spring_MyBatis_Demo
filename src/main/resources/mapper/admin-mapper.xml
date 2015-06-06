@@ -25,7 +25,10 @@
         UPDATE demo.Admin
         SET
             username = #{username}, 
-            password = #{password}
+            password = #{password},
+            name = #{name},
+            team = #{team},
+            role = #{role}
         WHERE id = #{id}
     </update>
     <delete id="remove">
@@ -35,11 +38,17 @@
     <insert id="add" parameterType="Admin" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO demo.Admin (
             username, 
-            password
+            password,
+                name,
+                team,
+                role
         )
         VALUES (
             #{username}, 
-            #{password}
+            #{password},
+                #{name},
+                #{team},
+                #{role}
         );
     </insert>
     <select id="login" parameterType="admin" resultType="admin">

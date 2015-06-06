@@ -9,3 +9,12 @@ CREATE TABLE demo.Admin
   Team  VARCHAR(255),
   Role VARCHAR(255) COMMENT '管理员;组长;员工;'
 );
+
+CREATE TABLE demo.Log (
+  Id INT AUTO_INCREMENT PRIMARY KEY ,
+  Logdate DATE,
+  Content TEXT(255),
+  UserId INT,
+  CONSTRAINT FK_Log FOREIGN KEY(UserId) REFERENCES Admin(Id)
+);
+

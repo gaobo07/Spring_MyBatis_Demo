@@ -85,13 +85,13 @@ public class AdminController extends BaseController {
             String role = admin.getRole();
             switch (role) {
                 case "管理员":
-                    page = "admin/list.jsp";
+                    page = "admin/list";
                     break;
                 case "组长":
                     page = "";
                     break;
                 case "员工":
-                    page = "";
+                    page = "log/list";
                     break;
                 default:
                     break;

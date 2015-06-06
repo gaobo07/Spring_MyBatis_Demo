@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="log">
+    <select id="list" resultType="log">
+        SELECT *
+        FROM demo.Log
+        ORDER BY id
+    </select>
+    <select id="employeeList" resultType="log">
+        SELECT *
+        FROM demo.Log
+        WHERE UserId = #{userId}
+        ORDER BY id
+    </select>
+    <select id="search" resultType="log">
+        SELECT *
+        FROM demo.Log
+        WHERE id = #{id}
+    </select>
+    <select id="fuzzy" parameterType="java.util.Map" resultType="log">
+        SELECT * FROM demo.Log
+        <where>
+            <if test="logdate != null and logdate != ''">logdate LIKE "%"#{logdate}"%"</if>
+            <if test="content != null and content != ''">AND content LIKE "%"#{content}"%"</if>
+            <if test="userId != null and userId != ''">AND userId LIKE "%"#{userId}"%"</if>
+        </where>
+    </select>
+    <update id="modify">
+        UPDATE demo.Log
+        SET
+            logdate = #{logdate},
+            content = #{content},
+            userId  = #{userId}
+        WHERE id = #{id}
+    </update>
+    <delete id="remove">
+        DELETE FROM demo.Log
+        WHERE id = #{id}
+    </delete>
+    <insert id="add" parameterType="Log" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO demo.Log (
+            logdate,
+            content,
+            userId
+        )
+        VALUES (
+            #{logdate},
+            #{content},
+            #{userId}
+        );
+    </insert>
+</mapper>

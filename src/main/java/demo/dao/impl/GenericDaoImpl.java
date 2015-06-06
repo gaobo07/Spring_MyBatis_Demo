@@ -77,7 +77,7 @@ public class GenericDaoImpl<M extends Serializable, ID extends Serializable> imp
         sqlSession.close();
     }
 
-    private Pagination<M> page(int page, Object parameter, String selectId) {
+    protected Pagination<M> page(int page, Object parameter, String selectId) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         List<M> list = sqlSession.selectList(namespace.concat(selectId), parameter, getRowBounds(page));
         sqlSession.close();
